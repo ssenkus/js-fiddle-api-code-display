@@ -10,22 +10,26 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 			
-				var fiddles = [];
+				var fiddles = {};
 				$.ajax({
 					type:		"GET",
 					url: 		"http://jsfiddle.net/api/user/ssenkus/demo/list.json",
 					dataType:	"jsonp",
-					success:    function(result) {
-									$.each(result.list, function(name){
-										fiddles.push(name);
-										
-									});
+					success:    function(data) {
+								//console.log(data.list.length);
+									$.each(data.list, function(i, elem){
+										fiddles[i] = { 
+											'title': elem.title,
+											'description': elem.description,
+											'url': elem.url 
+										};
+									});  
 								},
 					error: 		function(xhr, ajaxOptions, thrownError) {  
 									alert("xhr status: " + xhr.statusText +"\nError thrown: " + thrownError);    
 								}
 				});
-				console.log(fiddles);
+				
 			}); 
 		</script>
 		<h2>D4Jm2</h2>
