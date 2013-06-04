@@ -7,10 +7,29 @@
 	</head>
 	<body>
 		<h1>My JSFiddles</h1>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			
+				var fiddles = [];
+				$.ajax({
+					type:		"GET",
+					url: 		"http://jsfiddle.net/api/user/ssenkus/demo/list.json",
+					dataType:	"jsonp",
+					success:    function(result) {
+									$.each(result.list, function(name){
+										fiddles.push(name);
+										
+									});
+								},
+					error: 		function(xhr, ajaxOptions, thrownError) {  
+									alert("xhr status: " + xhr.statusText +"\nError thrown: " + thrownError);    
+								}
+				});
+				console.log(fiddles);
+			}); 
+		</script>
 		<h2>D4Jm2</h2>
-		<iframe
-  style="width: 100%; height: 300px"
-  src="http://jsfiddle.net/ssenkus/D4Jm2/embedded/">
-</iframe>
+		<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/ssenkus/D4Jm2/embedded"></iframe>
+		<!-- http://jsfiddle.net/ssenkus/D4Jm2/embedded/html,css,js,result/presentation -->
 	</body>
 </html>
